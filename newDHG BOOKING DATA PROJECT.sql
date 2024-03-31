@@ -1,7 +1,27 @@
 SELECT *
   FROM [BookingData]
 
+ALTER TABLE BookingData
+ALTER COLUMN [Booking Date] DATE
 
+ALTER TABLE BookingData
+ALTER COLUMN [Arrival Date] DATE
+
+ALTER TABLE BookingData
+ALTER COLUMN [Status Update] DATE
+
+ALTER TABLE BookingData
+ADD [Cancellation Status] VARCHAR (50)
+
+UPDATE BookingData
+SET [Cancellation Status] = 
+CASE WHEN [Cancelled (0/1)] = 1 
+THEN 'CANCELLED'
+ELSE 'NOT CANCELLED'
+END
+
+ALTER TABLE BookingData
+DROP COLUMN Cancellation, [Cancelled (0/1)]
   DELETE FROM BookingData
   WHERE Revenue = 5400
 
@@ -337,9 +357,7 @@ SELECT *
 
 
 
---FROM THE ANALYSIS ABOVE, WE CAN THEN MAKE RECOMMENDATIONS FOR THE HOTEL
 
-	
 	
 
 
